@@ -1,29 +1,42 @@
-### IntelliJ IDEA ###
-out/
+# Arquivos de compilação Java
+*.class
+
+# Diretórios comuns de build
+/bin/
+/build/
+/out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
-### Eclipse ###
+# Arquivos de log e temporários
+*.log
+*.tmp
+*.swp
+
+# Arquivos de sistema
+.DS_Store
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# VS Code
 .vscode/
-
-### Mac OS ###
-.DS_Store
