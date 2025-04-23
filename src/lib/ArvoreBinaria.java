@@ -35,7 +35,22 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
 
     @Override
     public Object pesquisar(Object valor) {
-        return null;
+        T val = (T) valor;
+        return pesquisarRecursivo(raiz, val);
+    }
+
+    private T pesquisarRecursivo(No<T> atual, T valor) {
+        if (atual == null) return null;
+
+        int cmp = comparador.compare(valor, atual.getValor());
+
+        if (cmp == 0) {
+            return atual.getValor();
+        } else if (cmp < 0) {
+            return pesquisarRecursivo(atual.getFilhoEsquerda(), valor);
+        } else {
+            return pesquisarRecursivo(atual.getFilhoDireita(), valor);
+        }
     }
 
     @Override
