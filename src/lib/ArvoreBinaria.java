@@ -77,7 +77,46 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
 
     @Override
     public Object remover(Object valor) {
-        return null;
+        T val = (T) valor;
+        raiz = removerRecursivo(raiz, val);
+        return val;
+    }
+
+    private No<T> removerRecursivo(No<T> atual, T valor) {
+        if (atual == null) return null;
+
+        int cmp = comparador.compare(valor, atual.getValor());
+
+        if (cmp < 0) {
+            atual.setFilhoEsquerda(removerRecursivo(atual.getFilhoEsquerda(), valor));
+        } else if (cmp > 0) {
+            atual.setFilhoDireita(removerRecursivo(atual.getFilhoDireita(), valor));
+        } else {
+            // caso 1: sem filhos
+            if (atual.getFilhoEsquerda() == null && atual.getFilhoDireita() == null) {
+                return null;
+            }
+            // caso 2: um filho
+            else if (atual.getFilhoEsquerda() == null) {
+                return atual.getFilhoDireita();
+            } else if (atual.getFilhoDireita() == null) {
+                return atual.getFilhoEsquerda();
+            }
+
+            // caso 3: dois filhos
+            T menorValor = encontrarMenorValor(atual.getFilhoDireita());
+            atual = new No<>(menorValor);
+            atual.setFilhoDireita(removerRecursivo(atual.getFilhoDireita(), menorValor));
+        }
+
+        return atual;
+    }
+
+    private T encontrarMenorValor(No<T> no) {
+        while (no.getFilhoEsquerda() != null) {
+            no = no.getFilhoEsquerda();
+        }
+        return no.getValor();
     }
 
     @Override
