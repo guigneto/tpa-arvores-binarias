@@ -45,7 +45,12 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
 
     @Override
     public int quantidadeNos() {
-        return 0;
+        return contarNos(raiz);
+    }
+
+    private int contarNos(No<T> no) {
+        if (no == null) return 0;
+        return 1 + contarNos(no.getFilhoEsquerda()) + contarNos(no.getFilhoDireita());
     }
 
     @Override
