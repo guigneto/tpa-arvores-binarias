@@ -105,8 +105,20 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
         return "";
     }
 
+
     @Override
     public String caminharEmOrdem() {
-        return "";
+        StringBuilder resultado = new StringBuilder();
+        caminharEmOrdem(raiz, resultado);
+        return resultado.toString().trim(); // remove o espaço no fim
     }
+
+    private void caminharEmOrdem(No<T> no, StringBuilder sb) {
+        if (no != null) {
+            caminharEmOrdem(no.getFilhoEsquerda(), sb);
+            sb.append(no.getValor()).append(" ");
+            caminharEmOrdem(no.getFilhoDireita(), sb);
+        }
+    }
+
 }
