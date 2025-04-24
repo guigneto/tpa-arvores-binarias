@@ -1,13 +1,17 @@
 package appPet.model;
 
+import java.util.random.RandomGenerator;
+
 public class Pet {
 
+    private int id;
     private String nome;
     private int idade;
     private String especie;
     private String raca;
 
     public Pet(String nome, int idade, String especie, String raca) {
+        this.id =  1 + (int)(Math.random() * 100000);
         this.nome = nome;
         this.idade = idade;
         this.especie = especie;
