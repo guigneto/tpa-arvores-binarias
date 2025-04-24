@@ -8,6 +8,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
 
     protected No<T> raiz = null;
     protected Comparator<T> comparador;
+    protected int quantidade;
 
     public ArvoreBinaria(Comparator<T> comp) {
         comparador = comp;
@@ -17,10 +18,12 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
     public void adicionar(Object novoValor) {
         T valor = (T) novoValor;
         raiz = inserirRecursivo(raiz, valor);
+
     }
 
     private No<T> inserirRecursivo(No<T> atual, T valor) {
         if (atual == null) {
+            quantidade++;
             return new No<>(valor);
         }
 
@@ -30,7 +33,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
             atual.setFilhoEsquerda(inserirRecursivo(atual.getFilhoEsquerda(), valor));
         } else if (cmp > 0) {
             atual.setFilhoDireita(inserirRecursivo(atual.getFilhoDireita(), valor));
-        } // se cmp == 0, valor duplicado — vamo tratar ou não?
+        }
 
         return atual;
     }
