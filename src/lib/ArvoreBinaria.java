@@ -108,7 +108,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
 
             // caso 3: dois filhos
             T menorValor = encontrarMenorValor(atual.getFilhoDireita());
-            atual = new No<>(menorValor);
+            atual.setValor(menorValor);
             atual.setFilhoDireita(removerRecursivo(atual.getFilhoDireita(), menorValor));
         }
 
