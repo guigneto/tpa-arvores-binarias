@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class Pet {
 
     private int id;
@@ -9,10 +11,23 @@ public class Pet {
     private String raca;
 
     public Pet(String nome, int idade, String especie, String raca) {
+        this.id = gerarId();
         this.nome = nome;
         this.idade = idade;
         this.especie = especie;
         this.raca = raca;
+    }
+
+    private int gerarId() {
+        Random random = new Random();
+        return random.nextInt(9000) + 1000; // Gera ID de 4 dígitos entre 1000 e 9999
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
