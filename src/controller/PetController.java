@@ -1,8 +1,9 @@
 package controller;
 
 import lib.ArvoreBinaria;
-import model.Pet;
+import model.IdComparador;
 import model.NomeComparador;
+import model.Pet;
 import view.Menu;
 
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class PetController {
     private Scanner scanner;
 
     public PetController() {
-        this.arvore = new ArvoreBinaria<>(new NomeComparador());
+        this.arvore = new ArvoreBinaria<>(new IdComparador()); // Arvore baseada em ID
         this.scanner = new Scanner(System.in);
     }
 
@@ -24,10 +25,11 @@ public class PetController {
 
             switch (opcao) {
                 case 1 -> adicionarPet();
-                case 2 -> pesquisarPetPorNome();
-                case 3 -> removerPet();
-                case 4 -> listarPetsEmOrdem();
-                case 5 -> listarPetsPorNivel();
+                case 2 -> pesquisarPetPorId();
+                case 3 -> pesquisarPetPorNome();
+                case 4 -> removerPet();
+                case 5 -> listarPetsEmOrdem();
+                case 6 -> listarPetsPorNivel();
                 case 0 -> System.out.println("Encerrando o programa. Até logo!");
                 default -> System.out.println("Opção inválida!");
             }
@@ -50,14 +52,17 @@ public class PetController {
 
         Pet novoPet = new Pet(nome, idade, especie, raca);
         arvore.adicionar(novoPet);
-        System.out.println("Pet adicionado com sucesso!");
+        System.out.println("Pet adicionado com sucesso! (ID: " + novoPet.getId() + ")");
     }
 
-    public void pesquisarPetPorNome() {
-        System.out.print("Digite o nome do pet para pesquisar: ");
-        String nome = scanner.nextLine();
+    public void pesquisarPetPorId() {
+        System.out.print("Digite o ID do pet para pesquisar: ");
+        int id = Integer.parseInt(scanner.nextLine());
 
-        Pet dummy = new Pet(nome, 0, "", "");
+        // Criando um Pet "dummy" apenas com o ID (outros campos irrelevantes)
+        Pet dummy = new Pet("dummy", 0, "", "");
+        dummy.setId(id);
+
         Pet encontrado = (Pet) arvore.pesquisar(dummy);
 
         if (encontrado != null) {
@@ -67,14 +72,29 @@ public class PetController {
         }
     }
 
-    public void removerPet() {
-        System.out.print("Digite o nome do pet para remover: ");
+    public void pesquisarPetPorNome() {
+        System.out.print("Digite o nome do pet para pesquisar: ");
         String nome = scanner.nextLine();
 
         Pet dummy = new Pet(nome, 0, "", "");
+        Pet encontrado = (Pet) arvore.pesquisar(dummy, new NomeComparador());
+
+        if (encontrado != null) {
+            System.out.println("Pet encontrado: " + encontrado);
+        } else {
+            System.out.println("Pet não encontrado.");
+        }
+    }
+
+    public void removerPet() {
+        System.out.print("Digite o ID do pet para remover: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        Pet dummy = new Pet("dummy", 0, "", "");
+        dummy.setId(id);
+
         Pet removido = (Pet) arvore.remover(dummy);
 
-        System.out.println("Tentando remover: " + nome);
         if (removido != null) {
             System.out.println("Pet removido com sucesso.");
         } else {
@@ -83,7 +103,7 @@ public class PetController {
     }
 
     public void listarPetsEmOrdem() {
-        System.out.println("Pets em ordem (alfabética):");
+        System.out.println("Pets em ordem (por ID):");
         System.out.println(arvore.caminharEmOrdem());
     }
 
