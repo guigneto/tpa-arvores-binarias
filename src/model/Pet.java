@@ -2,6 +2,7 @@ package model;
 
 public class Pet {
 
+    private int id;
     private String nome;
     private int idade;
     private String especie;
@@ -32,6 +33,6 @@ public class Pet {
 
     @Override
     public String toString() {
-        return nome + " (" + raca + ", " + idade + " anos, " + especie + ")";
+        return "#" + id + " - " + nome + " (" + raca + ", " + idade + " anos, " + especie + ")";
     }
 }
