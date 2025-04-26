@@ -1,6 +1,5 @@
 package model;
 
-import model.Pet;
 import java.util.Comparator;
 
 public class NomeComparador implements Comparator<Pet> {
