@@ -1,4 +1,4 @@
-package view;
+package appPet.view;
 
 import java.util.Scanner;
 

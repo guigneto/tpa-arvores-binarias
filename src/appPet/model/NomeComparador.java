@@ -1,4 +1,4 @@
-package model;
+package appPet.model;
 
 import java.util.Comparator;
 
