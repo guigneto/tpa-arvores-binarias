@@ -1,10 +1,10 @@
-package controller;
+package appPet.controller;
 
 import lib.ArvoreBinaria;
-import model.IdComparador;
-import model.NomeComparador;
-import model.Pet;
-import view.Menu;
+import appPet.model.IdComparador;
+import appPet.model.NomeComparador;
+import appPet.model.Pet;
+import appPet.view.Menu;
 
 import java.util.Scanner;
 
