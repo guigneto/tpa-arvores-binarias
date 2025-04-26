@@ -4,21 +4,18 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static int exibirMenu() {
-        System.out.println("\n==== Sistema de Adoção de Pets ====");
-        System.out.println("1. Adicionar pet");
-        System.out.println("2. Pesquisar pet por nome");
-        System.out.println("3. Remover pet");
-        System.out.println("4. Listar pets em ordem");
-        System.out.println("5. Listar pets por nível");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n--- Menu Pet Adocao ---");
+        System.out.println("1. Adicionar Pet");
+        System.out.println("2. Pesquisar Pet por ID");
+        System.out.println("3. Pesquisar Pet por Nome");
+        System.out.println("4. Remover Pet por ID");
+        System.out.println("5. Listar Pets em Ordem (por ID)");
+        System.out.println("6. Listar Pets por Nivel (em Largura)");
         System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
-        try {
-            return Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
+        return Integer.parseInt(scanner.nextLine());
     }
 }
