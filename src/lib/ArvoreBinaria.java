@@ -131,8 +131,8 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T>{
         return calcularAltura(raiz);
     }
 
-    public int calcularAltura(No<T> no){
-        if (no == null) return 0; // altura de árvore vazia = 0
+    public int calcularAltura(No<T> no) {
+        if (no == null) return -1; // altura de árvore vazia = -1 (sem níveis)
         int alturaEsquerda = calcularAltura(no.getFilhoEsquerda());
         int alturaDireita = calcularAltura(no.getFilhoDireita());
         return 1 + Math.max(alturaEsquerda, alturaDireita);
